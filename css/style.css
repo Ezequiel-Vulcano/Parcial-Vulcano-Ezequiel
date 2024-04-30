@@ -216,3 +216,8 @@ main {
     background-color: var(--type-fairy);
     color: var(--clr-black);
 }
+
+
+input[type="search"] {
+    outline: none;
+}

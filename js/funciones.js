@@ -139,7 +139,7 @@ function buscar_pokemon(){
                     }
                     generar_tarjeta(datos_pokemon.nombre, datos_pokemon.gif, datos_pokemon.id, datos_pokemon.filtro, datos_pokemon.altura, datos_pokemon.peso)
 
-                    
+                    localStorage.setItem(datos_pokemon.id, datos_pokemon.nombre);
                 })
             } 
         })
@@ -150,6 +150,5 @@ function buscar_pokemon(){
         
     })
     barra_buscar.value = ""
-    localStorage.setItem("nombrePokemon", nombre);
+    
 }
-
