@@ -16,7 +16,7 @@ function agregarFetch(){
                     id: detalle.id,
                     filtro: detalle.types,
                     altura: detalle.height,
-                    peso: detalle.weight
+                    peso: detalle.weight,
                 }
                  
                 generar_tarjeta(datos.nombre, datos.gif, datos.id, datos.filtro, datos.altura, datos.peso)

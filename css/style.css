@@ -221,3 +221,18 @@ main {
 input[type="search"] {
     outline: none;
 }
+
+/************************************** TARJETAS **************************************/
+
+.mas-informacion {
+    margin-top: 1rem;
+    background-color: var(--clr-black);
+    padding: .5rem .8rem;
+    border-radius: 10px;
+    color: white;
+    font-size: 14px;
+}
+
+/*black
+gray
+white

@@ -53,11 +53,24 @@ function generar_tarjeta(dato1, dato2, dato3, dato4, dato5, dato6){
     let altura = document.createElement("span")
     altura.innerText = dato5 + "M"
 
+    
+    //<!-- Boton Info -->
+
+    let botonInfo = document.createElement("span")
+    botonInfo.setAttribute("class", "mas-informacion")
+    botonInfo.setAttribute("data-bs-target", "#staticBackdrop")
+    botonInfo.setAttribute("data-bs-toggle", "modal")
+    botonInfo.innerText = "Mas informacion"
+
+    botonInfo.addEventListener("click", function(){
+        cambiar_valores(dato1)
+    })
+
     contenedor_titulo_id.append(id, titulo)
     conenedor_informacion_2.append(peso, altura)
     conenedor_informacion.append(contenedor_titulo_id, conenedor_filtros, conenedor_informacion_2 )
     contenedor_gif.append(gif)
-    contenedor_final.append(contenedor_gif, conenedor_informacion )
+    contenedor_final.append(contenedor_gif, conenedor_informacion, botonInfo)
 
     contenedor_tarjetas.append(contenedor_final)
 
@@ -151,4 +164,35 @@ function buscar_pokemon(){
     })
     barra_buscar.value = ""
     
+}
+
+function cambiar_valores(nombre){
+    console.log(nombre)
+
+    fetch(`https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`) //Enlace de la pokeApi que trae todo el listado completo de los Pokemones.
+    .then(response => response.json())
+    .then(response => {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${nombre}`)
+        .then(response => response.json())
+        .then(response => {
+            // --- OBJETO -> Contiene todos los datos que quiero traerme de la API para mostrar de cada Pokemon
+            let datos = {
+                img: response.sprites.other.home.front_default,
+                nombre: response.name,
+                id: response.id,
+                filtro: response.types,
+                altura: response.height,
+                peso: response.weight,
+                abilidad: response.abilities[0].ability.name,
+                experiencia: response.base_experience
+            }
+
+            experiencia.innerText = datos.experiencia
+            peso_tarjeta.innerText = datos.peso + " kg"
+            altura_tarjeta.innerText = datos.altura + " M"
+            abilidad_tarjeta.innerText = datos.abilidad
+            foto_tarjeta.src = datos.img
+            titulo_tarjeta.innerText = datos.nombre
+        })
+    })
 }
